@@ -17,8 +17,8 @@ while [ true ]; do
 	#else if
 	elif [[ -z $input ]]; then
 		echo "empty input found, please try again"
+	fi
 
-	#fi
 	#if [[ -n $input ]]; then
 	#	if  [[ ${#input} > 5 ]]; then
 	#		echo "input longer than 5 characters"
