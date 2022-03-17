@@ -28,7 +28,9 @@ namespace StringManipulationChallenge
         // 2) print the result to the console and 
         // 3) return the new string.
         public static string StringToUpper(string x){
-            throw new NotImplementedException("StringToUpper method not implemented.");
+            x = x.ToUpper();
+            Console.WriteLine(x);
+            return x;
         }
 
         // This method has one string parameter. 
@@ -66,7 +68,8 @@ namespace StringManipulationChallenge
         // 1) search the string parameter for the char parameter
         // 2) return the index of the char.
         public static int SearchChar(string userInputString, char x){
-            throw new NotImplementedException("SearchChar method not implemented.");
+            int pos = userInputString.IndexOf(x);
+            return pos;
         }
 
         // This method has two string parameters.

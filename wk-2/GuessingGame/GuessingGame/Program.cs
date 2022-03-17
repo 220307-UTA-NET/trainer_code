@@ -10,12 +10,27 @@ namespace GuessingGame
 
 			while ( true )
 			{
+			// 	string? one;
+			// 	string? two;
+
+			// 	one = Console.ReadLine();
+			// 	two = Console.ReadLine();
+
+			// 	Console.WriteLine(one);
+			// 	Console.WriteLine(two);
+
+
+
+
+
 				Console.WriteLine("Enter the number for the menu option of your choice: ");
 				Console.WriteLine("[1] - Play the guessing game");
 				Console.WriteLine("[2] - Math Challenge!");
 				Console.WriteLine("[0] - Exit");
 
+				
 				int menu = int.Parse(Console.ReadLine());
+
 
 				switch ( menu )
 				{
@@ -51,7 +66,21 @@ namespace GuessingGame
 			while ( true ) //Begin the loop!
 			{
 				Console.WriteLine("Guess a number between 0 and 10: "); //Prompt the user
-				int input = int.Parse(Console.ReadLine()); //Read user input, parsing to an int, then save as int "input"
+
+				int? input;
+				string? in2 = Console.ReadLine();
+
+				try
+				{
+					input = int.Parse(in2); //Read user input, parsing to an int, then save as int "input"
+				}
+				catch (System.Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+					//Console.WriteLine("Bad input detected. Returning to menu.");
+					break;
+				}
+								
 				Console.WriteLine("You guessed: " + input); //Confirming the input with the user
 
 				if ( input == secret ) //If the user guessed the secret number (if input is equal to secret)
@@ -102,9 +131,23 @@ namespace GuessingGame
 				Console.WriteLine( num1 + " + " + num2 + " = ?"); // "33 + 45"
 
 				Console.WriteLine("Please enter your solution: ");
-				int userGuess = int.Parse(Console.ReadLine()); // Accepting the users solution
+				string userGuess = Console.ReadLine(); // Accepting the users solution
 
-				if ( solution == userGuess )
+				int intUserGuess;
+
+				bool success = int.TryParse(userGuess, out intUserGuess);
+
+				if( success )
+				{
+					intUserGuess = int.Parse(userGuess);
+				}
+				else
+				{
+					Console.WriteLine("Invalid input. Exiting Addition Challenge.");
+					break;
+				}
+
+				if ( solution == intUserGuess )
 				{
 					Console.WriteLine("You got it!");
 
@@ -116,7 +159,7 @@ namespace GuessingGame
 				}
 				else
 				{
-					Console.WriteLine("Not quite, you were off by: " + Math.Abs( solution - userGuess ));
+					Console.WriteLine("Not quite, you were off by: " + Math.Abs( solution - intUserGuess ));
 					Console.WriteLine("Press Enter to continue.");
 					Console.ReadLine();
 					Console.Clear();
