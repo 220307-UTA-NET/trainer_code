@@ -30,6 +30,8 @@ namespace BankAccounts
         {
             this.accountNumber = accountSeed;
             accountSeed++;
+
+            this.ReadFromXml();
         }
 
         // Methods
@@ -116,5 +118,22 @@ namespace BankAccounts
             File.WriteAllText(path, newStringWriter.ToString());
         }
 
+        public void ReadFromXml()
+        {
+            try
+            {
+                using StreamReader reader = new( $"./Transactions-{this.accountNumber}.xml");
+                var records = (List<Transaction>?)Serializer.Deserialize(reader);
+                reader.Dispose();
+
+                if (records is null) throw new InvalidDataException();
+
+                this.allTransactions = records;
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
     }
 }
