@@ -7,7 +7,7 @@ namespace BankAccounts
     {
         static void Main()
         {
-            SavingsAccount newSavingsAccount = new SavingsAccount("Personal Savings", 123456, 2500.75);
+            SavingsAccount newSavingsAccount = new SavingsAccount("Personal Savings", 2500.75);
 
             Console.WriteLine("newAccount.AccountName = " + newSavingsAccount.accountName);
             Console.WriteLine("Current account number: " + newSavingsAccount.GetAccountNumber());
@@ -32,7 +32,7 @@ namespace BankAccounts
             newSavingsAccount.ApplyInterest();
             Console.WriteLine("Current account balance: " + newSavingsAccount.GetAccountBalance());
 
-            CheckingAccount newCheckingAccount = new CheckingAccount("Personal Checking", 12347, 250);
+            CheckingAccount newCheckingAccount = new CheckingAccount("Personal Checking", 250);
 
             Console.WriteLine("newAccount.AccountName = " + newCheckingAccount.accountName);
             Console.WriteLine("Current account number: " + newCheckingAccount.GetAccountNumber());
@@ -47,7 +47,8 @@ namespace BankAccounts
             newCheckingAccount.Withdrawl(150);
             Console.WriteLine("Current account balance: " + newCheckingAccount.GetAccountBalance());
 
-
+            newCheckingAccount.SerializeAsXml();
+            newSavingsAccount.SerializeAsXml();
         }
     }
 }

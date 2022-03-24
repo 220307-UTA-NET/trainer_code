@@ -1,13 +1,36 @@
+using System.Xml.Serialization;
+
 namespace BankAccounts
 {
-    abstract class Account
+    class Account
     {// abstract class objects cannot be created, and do not have a constructor.
 
         // Fields
+        private static int accountSeed = 11111111;
         public string? accountName;
         protected int accountNumber;
-        protected double accountBalance;
+        protected double accountBalance
+        {
+            get
+            {
+                double balance = 0;
+                foreach (var item in allTransactions)
+                {
+                    balance += item.Amount;
+                }
+                return balance;
+            }
+        }
         protected double interestRate;
+        private List<Transaction> allTransactions = new List<Transaction>();
+        public XmlSerializer Serializer { get; } = new( typeof( List<Transaction>));
+
+        // Constructor
+        protected Account()
+        {
+            this.accountNumber = accountSeed;
+            accountSeed++;
+        }
 
         // Methods
         public int GetAccountNumber()
@@ -25,11 +48,48 @@ namespace BankAccounts
             return this.interestRate;
         }
 
-        public abstract void Withdrawl (double withdrawl);
+        public void Withdrawl (double amount, string note = "")
+        {
+            if( amount < 0 )
+            {
+                Console.WriteLine("Withdrawls must be a positive value");
+                Console.WriteLine("Transaction Canceled");
+                return;
+            }
+            else if( (this.accountBalance - amount) < 0 )
+            {
+                Console.WriteLine("Balance in account my not go below 0.");
+                Console.WriteLine("Transaction canceled.");
+                return;
+            }
+            else
+            {
+                // this.accountBalance -= withdrawl;
+                // this.Record(-withdrawl);
 
-        public abstract void Deposit (double deposit);
+                var withdrawl = new Transaction( -amount, DateTime.Now, note );
+                allTransactions.Add(withdrawl);
+            }
+        }
 
+        public void Deposit (double amount, string note = "")
+        {
+            if( amount < 0 )
+            {
+                Console.WriteLine("Deposits must be a positive value");
+                Console.WriteLine("Transaction Canceled");
+                return;
+            }
+            else
+            {
+                // this.accountBalance += deposit;
+                // this.Record(deposit);
 
+                var deposit = new Transaction( amount, DateTime.Now, note);
+                allTransactions.Add(deposit);
+            }
+        }
+        
         protected void Record(double TransactionAmmount)
         {
             DateTime Current = DateTime.Now;
@@ -44,6 +104,16 @@ namespace BankAccounts
             {
                 File.AppendAllLines(path, content);
             }
+        }
+
+        public void SerializeAsXml()
+        {
+            var newStringWriter = new StringWriter();
+            Serializer.Serialize(newStringWriter, allTransactions);
+            newStringWriter.Close();
+            
+            string path = $"./Transactions-{this.accountNumber}.xml";
+            File.WriteAllText(path, newStringWriter.ToString());
         }
 
     }
