@@ -1,8 +1,8 @@
 using System.Xml.Serialization;
 
-namespace BankAccounts
+namespace BankAccounts.App
 {
-    class Account
+    public class Account
     {// abstract class objects cannot be created, and do not have a constructor.
 
         // Fields
@@ -50,6 +50,11 @@ namespace BankAccounts
             return this.interestRate;
         }
 
+        public int GetTransactionsCount()
+        {
+            return this.allTransactions.Count;
+        }
+        
         public void Withdrawl (double amount, string note = "")
         {
             if( amount < 0 )

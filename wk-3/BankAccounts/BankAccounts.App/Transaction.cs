@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace BankAccounts
+namespace BankAccounts.App
 {
     public class Transaction
     {

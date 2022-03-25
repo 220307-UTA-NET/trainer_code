@@ -1,6 +1,6 @@
-namespace BankAccounts
+namespace BankAccounts.App
 {
-    class SavingsAccount : Account
+    public class SavingsAccount : Account
     {
         // Fields
 
