@@ -54,7 +54,7 @@ namespace BankAccounts.App
         {
             return this.allTransactions.Count;
         }
-        
+
         public void Withdrawl (double amount, string note = "")
         {
             if( amount < 0 )
