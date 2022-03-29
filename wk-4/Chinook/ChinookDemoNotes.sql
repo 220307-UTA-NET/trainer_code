@@ -82,3 +82,50 @@ ORDER BY Sum_Total DESC, CustomerId;
 -- HAVING
 -- SELECT
 -- ORDER BY
+
+
+
+-- JOINS
+-- accessing more than one table to return the desired data
+
+SELECT * 
+FROM Employee AS e1 CROSS JOIN Employee AS e2
+WHERE e1.EmployeeID != e2.EmployeeID;
+
+
+-- Cross Join
+-- Inner Join
+-- Left/Right Join
+-- Outter Join
+
+
+-- every album by artist
+SELECT Album.Title AS [Album Title], Artist.Name AS [Aritist Name]
+FROM Album INNER JOIN  Artist ON Album.ArtistID = Artist.ArtistID;
+
+
+SELECT al.Title, ar.Name
+FROM Album AS al INNER JOIN Artist AS ar 
+    ON al.ArtistID = ar.ArtistID;
+
+
+
+
+
+-- all rock songs, showing the name in the the format "Artist-Name - Song-Name"
+
+
+-- genre has genre name and genre ID
+-- track has track name, genre id, and album id
+-- Album has album id and artist id
+-- artist has artist name and artist id
+
+SELECT Artist.Name + ' - ' + Track.Name AS [Artist - Song]
+FROM Track 
+    INNER JOIN Genre ON Genre.GenreID = Track.GenreID
+    JOIN Album ON Track.AlbumID = Album.AlbumID
+    JOIN Artist ON Album.ArtistID = Artist.ArtistID
+WHERE Genre.Name = 'Rock'
+
+
+
