@@ -46,6 +46,18 @@
 
 -- 2. which artists did not record any tracks of the Latin genre?
 
+-- Artist has ArtistID and NAME
+-- Track has AlbumID, GenreID
+-- Album has ArtistID and AlbumID
+-- Genre has GenreID and Name (Latin = 7)
+
+SELECT COUNT(DISTINCT Artist.Name + Genre.Name)
+FROM Track 
+INNER JOIN Album on Track.AlbumId = Album.AlbumID
+INNER JOIN Artist on Album.ArtistID = Artist.ArtistId
+INNER JOIN Genre on Track.GenreID = Genre.GenreId
+WHERE Genre.Name != 'Latin';
+
 -- 3. which video track has the longest length? (use media type table)
 
 -- 4. find the names of the customers who live in the same city as the
