@@ -129,3 +129,58 @@ WHERE Genre.Name = 'Rock'
 
 
 
+
+
+
+-- Set operations
+-- Set operations let us run multiple queries as a single query
+
+-- all first names of employees and customers
+SELECT FirstName FROM Employee
+UNION ALL
+SELECT FirstName FROM Customer;
+-- UNION returns all entries that are found on either query, without duplicates.
+-- UNION ALL '', with duplicates (a little faster, but could have more results)
+
+-- names that are both a customer and an employee
+SELECT FirstName FROM Employee
+INTERSECT
+SELECT FirstName FROM Customer;
+-- INTERSECT returns all entries that are in both queries (without duplicates)
+
+-- names that are employees but not customers
+SELECT FirstName FROM Customer
+EXCEPT
+SELECT FirstName FROM Employee;
+-- EXCEPT returns entries that match the first query, and are not matched in the second query.
+-- ORDER MATTERS!
+
+-- To use a set operation, the queries must return the same type and number of columns.
+
+
+
+
+
+-- Sub-Query
+-- it's sometimes easier to express a complex idea as two queries that work sequentially
+
+-- the artist who made the album with the longest title.
+SELECT * FROM Artist
+WHERE ArtistID = (
+        SELECT ArtistID FROM Album
+        WHERE LEN(Title) >= ALL(SELECT LEN(Title) FROM Album)
+);
+
+-- returns all tracks that were never purchased
+SELECT * FROM Track WHERE TrackID NOT IN( SELECT TrackID FROM InvoiceLine );
+-- Queries operate from the most-nested to the least-nested query
+-- Operators for Subqueries:
+-- IN, NOT IN, EXISTS, ANY, ALL
+
+
+
+-- SQL "Families" of the language
+
+-- DQL - Data Query Language - how we phrase/form a query
+-- DDL - Data Definition Language - how we define the database (create a table, define the columns of a table)
+-- DML - Data Manipulation Language - how we menipulate the database (add an entry, how we change an entry or table)
