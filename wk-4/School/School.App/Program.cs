@@ -8,16 +8,16 @@ namespace School.App
     {
         static void Main()
         {
-        //    Console.WriteLine("Hello Again!");
+            //    Console.WriteLine("Hello Again!");
 
-        //    Student temp = new Student(123, "Jonathan");
-        //    Console.WriteLine(temp.Introduce());
+            //    Student temp = new Student(123, "Jonathan");
+            //    Console.WriteLine(temp.Introduce());
 
-        //    Teacher temp2 = new Teacher(098, "Brian");
-        //    Console.WriteLine(temp2.Introduce());
+            //    Teacher temp2 = new Teacher(098, "Brian");
+            //    Console.WriteLine(temp2.Introduce());
 
 
-            string connectionString = "Server=tcp:220307-uta-net.database.windows.net,1433;Initial Catalog=220307-UTA-NET-MyDatabase;Persist Security Info=False;User ID=login220307;Password=Admin220307;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = ""; //CONNECTION STRING GOES HERE!!!!!
 
             IRepository repo = new SqlRepository(connectionString);
 
