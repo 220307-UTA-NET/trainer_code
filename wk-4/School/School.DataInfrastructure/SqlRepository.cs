@@ -84,5 +84,33 @@ namespace School.DataInfrastructure
             Teacher noTeacher = new();
             return noTeacher;
         }
+
+
+        public string GetStudentName(int ID)
+        {
+            string? name = "";
+            using SqlConnection connection = new SqlConnection(this._connectionString);
+            connection.Open();
+
+            string cmdText = @"SELECT Name
+                FROM School.Student
+                WHERE Student_ID = @ID;";
+
+            using SqlCommand cmd = new SqlCommand(cmdText, connection);
+            cmd.Parameters.AddWithValue("@ID", ID);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                name = reader.GetString(0);
+            }
+
+            connection.Close();
+
+            if (name != null)
+            { return name; }
+            return null;
+        }
     }
 }

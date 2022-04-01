@@ -29,5 +29,6 @@ namespace School.DataInfrastructure
 
         IEnumerable<Teacher> GetAllTeachers();
         Teacher CreateNewTeacher(string Name);
+        string GetStudentName(int ID);
     }
 }
