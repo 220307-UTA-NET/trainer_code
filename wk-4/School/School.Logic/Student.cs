@@ -20,7 +20,6 @@ namespace School.Logic
         }
 
         // Methods
-
         public int GetID()
         { return this.ID; }
         public string GetName()
@@ -28,15 +27,11 @@ namespace School.Logic
         public void SetName(string Name)
         { this.Name = Name; }
 
-
         public string Introduce()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"Hello, my name is {this.Name}, and I am Student {this.ID}");
             return sb.ToString();
         }
-
-
-
     }
 }

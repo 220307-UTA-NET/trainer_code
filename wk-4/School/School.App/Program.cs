@@ -28,12 +28,7 @@ namespace School.App
             Console.WriteLine(tmpStudent.Introduce());
 
 
-            //IEnumerable<Teacher> teachers = repo.GetAllTeachers();
-
-            //foreach (Teacher teacher in teachers)
-            //{
-            //    Console.WriteLine(teacher.Introduce());
-            //}
+            Console.WriteLine(mySchool.IntroduceAllTeachers());
 
             ////Teacher NewTeacher = repo.CreateNewTeacher("Jerome");
             ////Console.WriteLine(NewTeacher.Introduce());
