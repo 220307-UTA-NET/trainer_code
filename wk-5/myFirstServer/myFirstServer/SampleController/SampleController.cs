@@ -22,6 +22,12 @@ namespace myFirstServer.SampleController
 
         private static readonly List<int> s_sample = new() { 12 };
 
+        private readonly ILogger<SampleController> logger;
+
+        public SampleController(ILogger<SampleController> logger)
+        {
+            this.logger = logger;
+        }
 
 
         [HttpGet("/sample")]
@@ -35,6 +41,10 @@ namespace myFirstServer.SampleController
                 ContentType = "application/json",
                 Content = json
             };
+
+            logger.LogCritical("Critical Event");
+            logger.LogInformation("Information Event");
+            logger.LogTrace("Trace Event");
 
             return result;
         }
