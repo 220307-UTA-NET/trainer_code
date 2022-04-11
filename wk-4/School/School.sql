@@ -1,6 +1,7 @@
 CREATE SCHEMA School;
 GO
 
+
 -- ////////////// DROP TABLES /////////////
 -- DROP TABLE School.Course;
 -- DROP TABLE School.Teacher;
@@ -24,6 +25,7 @@ CREATE TABLE School.Teacher(
     Name NVARCHAR (255) NOT NULL
     CHECK (LEN(Name) > 0)
 );
+
 CREATE TABLE School.Student(
     Student_ID INT PRIMARY KEY IDENTITY,
     Name NVARCHAR (255) NOT NULL
@@ -43,6 +45,7 @@ ALTER TABLE School.Course
 
 
 -- //////////////// INSERT DATA ////////////////////////
+
 INSERT INTO School.Teacher (Name)  
     VALUES
     ('Tryg'),
@@ -58,9 +61,12 @@ INSERT INTO School.Student (Name)
 
 INSERT INTO School.Course (Course_ID, Name, TeacherID, EndDate) 
     VALUES
-        ('CS-101', 'Intro to C#', 8, '2022-06-06');
+        ('CS-101', 'Intro to C#', 3, '2022-06-06'),
+        ('CS-102', 'OOP Fundamentals', 2, '2022-06-06');
 
 INSERT INTO School.CourseStudent (Course_ID, Student_ID)
     VALUES
         ('CS-101', (SELECT Student_ID FROM School.Student WHERE Name = 'Kelly')),
-        ('CS-101', (SELECT Student_ID FROM School.Student WHERE Name = 'Kevin'));
+        ('CS-101', (SELECT Student_ID FROM School.Student WHERE Name = 'Kevin')),
+        ('CS-102', (SELECT Student_ID FROM School.Student WHERE Name = 'Cam')),
+        ('CS-102', (SELECT Student_ID FROM School.Student WHERE Name = 'Kelly'));

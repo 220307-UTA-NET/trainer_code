@@ -1,0 +1,93 @@
+CREATE SCHEMA RED;
+GO
+-- //////////////////////////////////////////////
+-- SELECTS
+-- //////////////////////////////////////////////
+
+SELECT * FROM RED.OS;
+SELECT * FROM RED.Type;
+SELECT * FROM RED.Device;
+
+
+-- //////////////////////////////////////////////
+-- DROP TABLES
+-- //////////////////////////////////////////////
+
+-- DROP TABLE RED.Type;
+-- DROP TABLE RED.OS;
+-- DROP TABLE RED.Device;
+
+
+-- //////////////////////////////////////////////
+-- CREATE TABLES
+-- //////////////////////////////////////////////
+
+CREATE TABLE RED.Type
+(
+    Type_ID INT IDENTITY PRIMARY KEY,
+    Type_Name NVARCHAR(128) NOT NULL
+);
+
+CREATE TABLE RED.OS
+(
+    OS_ID INT IDENTITY PRIMARY KEY,
+    OS_Name NVARCHAR(128) NOT NULL
+);
+
+CREATE TABLE RED.Device
+(
+    Device_ID INT IDENTITY PRIMARY KEY,
+    Device_Name NVARCHAR(128) NOT NULL,
+    Device_Type_ID INT NOT NULL FOREIGN KEY REFERENCES RED.Type (Type_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    Device_OS_ID INT NOT NULL FOREIGN KEY REFERENCES RED.OS (OS_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+-- //////////////////////////////////////////////
+-- INSERT DATA
+-- //////////////////////////////////////////////
+
+INSERT INTO RED.Type
+(
+    Type_Name
+)
+VALUES
+(
+    'Desktop'
+),
+(
+    'Laptop'
+);
+
+INSERT INTO RED.OS
+(
+    OS_Name
+)
+VALUES
+(
+    'Windows 10'
+),
+(
+    'Ubuntu'
+),
+(
+    'Garuda'
+);
+
+INSERT INTO RED.Device
+(
+    Device_Name,
+    Device_Type_ID,
+    Device_OS_ID
+)
+VALUES
+(
+    'Kite',
+    1,
+    3
+),
+(
+    'Perigrine',
+    2,
+    1
+);
