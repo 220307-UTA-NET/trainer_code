@@ -3,11 +3,34 @@
     <!-- this is a comment in html -->
     <!-- HTML is teh structure of a webpage, and is made up of elements.
     Elements are denoted by a tag, which wraps teh content of the element. -->
+   
     <head>
+        <!-- the head of a html document is where we find the <meta> tags, that carry metadata about our page -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>myFirstHTML</title>
-    </head>
+        <!-- the <title> tag let us change the title of the browser tab -->
+    </head> <!-- Don't forget to close your tags! -->
 
     <body>
+
+        we can simply dump raw text into the body, or into an element to contain it.
+        <!-- html generally ignores whitespace like line breaks -->
+        but it's better to use elements to contain your text.
+        <br> <!-- this is a line-break tag!! -->
+        <br>
+        Now at least I have a new line!
+
+        <div>
+            Div elements are used to contain other elemets, and group them together.
+        </div>
+        <div>
+            This is a different div element, with other elements inside of it.
+            <p>This is a paragraph within a div!</p>
+            <h6>And here is a heading within the same one!</h6>
+
+        </div>
+
         <h1>Hello World</h1>
         <h2>This is an h2 element.</h2>
         <h3>This is an h3 element.</h3>
@@ -20,6 +43,159 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg" height="200" width="200" alt="the dotnet logo">
         </a>
 
+        <div>
+            <p>
+                This paragraph will be our example of some different text formatting that we can do with HTML. HTML isn't the greatest at making things pretty, but it can get the job done on some basics
+                <br>
+                This will be <i>italicized</i>. you can also use the "em" tag to make things italicized.
+                <br>
+                We can make text <strong>bold</strong> by using the "strong" tag.
+                <br>
+                This is an <abbr title="Federal Bureau of Investigation">FBI</abbr>
+                <br>
+                We can add <code>code</code> to our page using the "code"
+            </p>
+        </div>
+
+        <div>
+            <h2>Structural Elements</h2>
+            <p> html can support different structures, like talbes and lists too!</p>
+
+            <h3>List</h3>
+            <p> there are a couple of different list elemts in html, let's start with an un-ordered list!</p>
+            
+            <h3>Unordered List</h3>
+            <ul>
+                <li> the <code>&lt;ul&gt;</code> tag - for unordered lists</li>
+                <li> the <code>&lt;ol&gt;</code> tag - for ordered lists</li>
+                <li> the <code>&lt;dl&gt;</code> tag - for description lists</li>
+            </ul>
+            <p>the ul and ol tags both use the <code>&lt;li&gt;</code> tag to list their items.</p> 
+            <p>the dl tag uses the <code>&lt;dt&gt;</code> tag for the term, and the <code>&lt;dd&gt;</code> tag for the definition.</p>
+
+            <h3>Ordered List</h3>
+            <ol>
+                <li>first</li>
+                <li>second</li>
+                <li>third</li>
+            </ol>
+
+            <h3>Tables</h3>
+            <p> tables are a common way to give an html page structure as well!</p> 
+            <ul>
+                <li> the <code>&lt;table&gt;</code> tag - creates the table</li>
+                <li> the <code>&lt;caption&gt;</code> tag - to list a caption for the table</li>
+                <li> the <code>&lt;thead&gt;</code> tag - to specify the content of a header row</li>
+                <li> the <code>&lt;tr&gt;</code> tag - to specifies the new row</li>
+                <li> the <code>&lt;th&gt;</code> tag - to specify the content of a header cell</li>
+                <li> the <code>&lt;tbody&gt;</code> tag - to specify the content of the body of the table</li>
+                <li> the <code>&lt;td&gt;</code> tag - to specify the content of a cell in the body</li>
+                <li> the <code>&lt;tfoot&gt;</code> tag - to specify the content of the footer row</li>
+            </ul>
+
+            <table>
+                <caption>some caption goes here!</caption>
+                <thead>
+                    <tr>
+                        <th>header 1</th>
+                        <th>header 2</th>
+                        <th>header 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>cell 1</td>
+                        <td>cell 2</td>
+                        <td>cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>cell 1</td>
+                        <td>cell 2</td>
+                        <td>cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>cell 1</td>
+                        <td>cell 2</td>
+                        <td>cell 3</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>footer 1</td>
+                        <td>footer 2</td>
+                        <td>footer 3</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+    
+        </div>
+        <div>
+            <!-- New elements added to HTML5 -->
+            <p>HTML 5 added some new things for us to play with! including main, article, section, header, footer, aside, nav, audio, video, and canvas elements!</p>
+            <main> </main>
+            <article> </article>
+            <section> </section>
+            <header> </header>
+
+        </div>
+
+        <div>
+            <h1>Forms</h1>
+            <p> forms are a great way to collect information from users!</p>
+            <p> forms submit data to some URL, they can have various inputs, and some way to "submit"</p>
+
+
+            <form action="https://www.google.com/search" method="get" target="_blank">
+                <input type="text" name="q" placeholder="some placeholder text">
+                <input type="submit">
+            </form>
+
+            <br><br>
+
+            <form action="#" mthod="post">
+                <label for="firstname">First Name:</label>
+                <!-- for={id} -->
+                <input type="text" name="firstname" id="firstname">
+                <!-- name is the name of the data that is sent to the server -->
+                <!-- id is the name of the element within the HTML page -->
+                <br>
+                <label>
+                    Last Name:
+                    <input type="text" name="lastname" required maxlength="30">
+                    <!-- required - it must be filled in before sumbitting, emply string not accepted -->
+                    <!-- maxlength - is the maximum length allowed -->
+                </label>
+                <br>
+                <input type="number" name="age" placeholder="Age">
+                <br>
+                <!-- it's a checkbox! -->
+                <input type="checkbox">
+                <br>
+                <!-- passowrd hides the user input -->
+                <input type="password">
+                <br>
+                <!-- select lets us create a dropdown menu -->
+                <select name="city">
+                    <option value="NYC">New York</option>
+                    <option value="SF">San Francisco</option>
+                    <option value="LA">Los Angeles</option>
+                </select>
+                <br>
+                <textarea></textarea>
+                <br>
+                <input type="datetime-local">
+                <br>
+                <input type="color">
+                <br>
+                <input type="range">
+                <br>
+                <input type="file">
+                <br>
+                <input type="submit">
+
+            </form>
+        </div>
     </body>
 </html>
 
