@@ -10,31 +10,75 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>myFirstHTML</title>
         <!-- the <title> tag let us change the title of the browser tab -->
+
+        <link rel="stylesheet" href="./main.css">
+        <!-- the link tag allows us to reference other resources for he page, including external styling. -->
     </head> <!-- Don't forget to close your tags! -->
 
     <body>
-
+        <p>now we should see a live update!</p>
         we can simply dump raw text into the body, or into an element to contain it.
         <!-- html generally ignores whitespace like line breaks -->
         but it's better to use elements to contain your text.
         <br> <!-- this is a line-break tag!! -->
+        
+        <!-- there is a heirarchy of styling applied to our elements. -->
+        <!-- anything with the <p> tag but no other styling will get this applied to it.-->
+        <style>
+            p {
+                /* Now that i'm working with the <style> tags, i'm writing in CSS, a completely different language from HTML.
+                CSS is a language that describes how to style your page.
+                */
+
+                /* tag selector - this allows us to target a type of element by the tag we use in HTML*/
+                color:orange
+            }
+
+            .class{ /*class style overrides tag style*/
+                /* class selector - this allows us to target a type of element by the class we use in HTML*/
+                background-color:#0000ff;
+                color:#000000;
+            }
+
+            #thisthing{ /*id style overrides class style*/
+                /* id selector - this allows us to target a specific element by the id we use in HTML*/
+                background-color:#ff0000;
+                color:#ffffff;
+            }
+        </style>
+
         <br>
-        Now at least I have a new line!
 
         <div>
+            <p id="boxmodel">This is our box model object.</p>
+        </div>
+
+        <p style="color:blue;"> <!-- tag/element level styling will apply to everything wrapped in it. -->
+            Now at least I have a new line!<br>
+            Now anything in this paragraph will also have the same styling applied.<br>
+            How can I apply styling to a single line or a portion of an element without having to affect the whole thing?<br>
+            <span style="color:red; font-size:12px">What if I want this line to be red?</span><br>
+            <!-- span/inline styling allows us to override any element styling. -->
+            <span style="font-size:12pt">And I want this line to resume the same style as above.</span><br>
+            <span style="font-size:1em">And I want this line to resume the same style as above.</span><br>
+        </p>   
+        <br>
+        <br>
+        <div class="class" >
             Div elements are used to contain other elemets, and group them together.
         </div>
-        <div>
+        <br>
+        <div class="class" id="thisthing">
             This is a different div element, with other elements inside of it.
             <p>This is a paragraph within a div!</p>
             <h6>And here is a heading within the same one!</h6>
 
         </div>
 
-        <h1>Hello World</h1>
+        <h1 id="thisotherthing">Hello World</h1>
         <h2>This is an h2 element.</h2>
         <h3>This is an h3 element.</h3>
-        <p>Hello Again!</p>
+        <p class="class">Hello Again!</p>
         <a href="https://www.google.com">This is a link!</a>
     <!-- Tags can be used to wrap multiple elements (like head and body), or
     they can wrap a single element to add functionality or structure (like
@@ -154,7 +198,7 @@
             <br><br>
 
             <form action="#" method="post">
-                <label for="firstname">First Name:</label>
+                <label for="firstname" id="firstnamelabel">First Name:</label>
                 <!-- for={id} -->
                 <input type="text" name="firstname" id="firstname">
 
