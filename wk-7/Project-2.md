@@ -1,5 +1,5 @@
 # project 2
-Nov 15 2021 Arlington .NET / Richard Hawkins, Nick Escalona
+220307 UTA .NET Richard Hawkins
 
 - ASP.NET Core REST service
     - owns the business logic of the application
